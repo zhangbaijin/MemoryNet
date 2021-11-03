@@ -1,6 +1,6 @@
 # MPRNet-Cloud-removal
 Progressive cloud removal
- ![image](https://github.com/nanjingxiaobawang/SieNet-Image-extrapolation/blob/master/structure.png)
+ ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/structure.PNG)
 # Requirements
 1.Pytorch >= 1.0
 2.Python 3
