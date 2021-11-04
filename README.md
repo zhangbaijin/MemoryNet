@@ -29,7 +29,7 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/1.png)
  
  Image translation results:
- 
+ ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/15.png)
  # Pretrained model 
  Cloud removal model: 
  Dataset:RICE 
