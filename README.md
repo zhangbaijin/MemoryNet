@@ -28,12 +28,14 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/1.png)
  
- 
  Image translation results:
  
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/15.png)
  
+ # Quick run 
+ you can run this conmand for test image:
+ <<python demo.py --task Task_Name --input_dir path_to_images --result_dir save_images_here>>
+
  # Pretrained model 
- For Cloud removal model,you can achieve from there https://pan.baidu.com/s/1MHCWXEuMvnuD6id1Qrds4w 
-提取码：x6q7 
+ For Cloud removal model,you can achieve from there https://pan.baidu.com/s/1MHCWXEuMvnuD6id1Qrds4w  提取码：x6q7 
 
