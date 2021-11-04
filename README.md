@@ -39,3 +39,5 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  # Pretrained model 
  For Cloud removal model,you can achieve from there https://pan.baidu.com/s/1MHCWXEuMvnuD6id1Qrds4w  提取码：x6q7 
 
+# Acknowledgement
+The code is updaded on https://github.com/swz30/MPRNet 
