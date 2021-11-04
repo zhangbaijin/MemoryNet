@@ -31,5 +31,6 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  Image translation results:
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/15.png)
  # Pretrained model 
- Cloud removal model: 
- Dataset:RICE 
+ For Cloud removal model,you can achieve from there https://pan.baidu.com/s/1MHCWXEuMvnuD6id1Qrds4w 
+提取码：x6q7 
+
