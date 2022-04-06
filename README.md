@@ -37,7 +37,7 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  ```python demo.py --task Task_Name --input_dir path_to_images --result_dir save_images_here```
 
  # Pretrained model 
- For Cloud removal model,you can achieve from there https://pan.baidu.com/s/1MHCWXEuMvnuD6id1Qrds4w  提取码：x6q7 
+ For Cloud removal model,you can achieve from there 链接：https://pan.baidu.com/s/12_D-zqLKxkQLSlVg8DD7xw  提取码：9nom 
 
 # Acknowledgement
 The code is updaded on https://github.com/swz30/MPRNet 
