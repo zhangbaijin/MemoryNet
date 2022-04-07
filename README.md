@@ -25,9 +25,6 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/2.png)
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/3.png)
  
- Image cloud removal
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/2.png)
-
  
  # Quick run 
  you can run this conmand for test image:
