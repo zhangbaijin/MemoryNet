@@ -20,18 +20,13 @@ Progressive cloud removal and shallow removal
 git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
 ```
 # Results
- Cloud removal results:
- 
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/148.png)
- 
- Image derainging results:
- 
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/1.png)
- 
  Image shallow removal 
  
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/2.png)
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/3.png)
+ 
+ Image cloud removal
+ ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/2.png)
 
  
  # Quick run 
