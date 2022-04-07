@@ -1,5 +1,5 @@
 # MPRNet-Cloud-removal
-Progressive cloud removal
+Progressive cloud removal and shallow removal 
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/structure.PNG)
 # Requirements
 1.Pytorch >= 1.0
@@ -27,6 +27,10 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  Image derainging results:
  
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/1.png)
+ 
+ Image shallow removal 
+ 
+ ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/1.jpg)
  
  Image translation results:
  
