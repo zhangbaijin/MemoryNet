@@ -20,7 +20,10 @@ Progressive cloud removal and shallow removal
 git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
 ```
 # Results
- Image shallow removal 
+ Image shadow removal of MPRNet is 
+ ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/MPRnet-results.png)
+ 
+ Image shadow removal of SpAGAN is 
  
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/2.png)
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/3.png)
