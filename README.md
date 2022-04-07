@@ -30,7 +30,7 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  
  Image shallow removal 
  
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/1.jpg)
+ ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/1.png)
  
  Image translation results:
  
