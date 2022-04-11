@@ -1,6 +1,6 @@
 # MPRNet-Cloud-removal
 Progressive cloud removal and shallow removal 
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/structure.PNG)
+ ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/MPRnet-results.png)
 # Requirements
 1.Pytorch >= 1.0
 
@@ -20,8 +20,7 @@ Progressive cloud removal and shallow removal
 git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
 ```
 # Results
- Image shadow removal of MPRNet on dataset ISTD is
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/MPRnet-results.png)
+ 
  
  Image shadow removal of SpAGAN on dataset ISTD is 
  
