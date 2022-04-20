@@ -13,11 +13,20 @@ shadow removal and cloud removal
 ```
 python test_SIDD.py --save_images
 ```
-#### Testing on DND dataset
-- Download DND Benchmark Data from [here](https://noise.visinf.tu-darmstadt.de/downloads/) and place it in `./Datasets/DND/test/`
-- Run
+## Evaluation
+
+1. Download the pretrained model [cloud-removal](https://drive.google.com/file/d/10RUwP1SO9mR0zFFG_RjzEDYOzlp-KIDt/view?usp=sharing, https://drive.google.com/file/d/1O_mbunY8a3aRm0ngZlVlufrmffWQVPFN/view?usp=sharing, https://drive.google.com/file/d/1R6tY0uNj5_b5xuZjf7uvySCtoi6K8iNm/view?usp=sharing)
+  and Baidu Drive: 链接：https://pan.baidu.com/s/1nBNEsRLIFS2VVtHl8O14Rw 
+提取码：5mli
+
+2. Download test datasets (RICE, ISTD) from [here](https://drive.google.com/drive/folders/1PDWggNh8ylevFmrjo-JEvlmqsDlWWvZs?usp=sharing) and place them in `./Datasets/Synthetic_Rain_Datasets/test/`
+
+3. Run
 ```
-python test_DND.py --save_images
+python test.py
+```
+
+#### To reproduce PSNR/SSIM scores of the paper, run
 ```
 
 #### To reproduce PSNR/SSIM scores of the paper, run MATLAB script
