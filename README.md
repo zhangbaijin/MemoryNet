@@ -27,3 +27,5 @@ Download datasets RICE from [here](https://github.com/BUPTLdy/RICE_DATASET), and
 ```
 evaluate_SIDD.m
 ```
+# ACKNOLAGEMENT
+The code is updated on https://github.com/swz30/MPRNet
