@@ -22,12 +22,7 @@ Progressive cloud removal and shallow removal
 ```
 git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
 ```
-# Results
- 
- 
- Image shadow removal of SpAGAN on dataset ISTD is 
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/3.png)
- 
+
  
  # Quick run 
  you can run this conmand for test image:
