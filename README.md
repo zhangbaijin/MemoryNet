@@ -1,7 +1,7 @@
 
 # Results of Cloud removal on RICE dataset
 
-![image]()
+![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/cloud-results.jpg)
 
 # Results of Cloud removal on RICE dataset
 ![image]()
