@@ -1,4 +1,4 @@
-# MPRNet-Cloud-removal
+# MPRNet shadow removal and Cloud removal
 Progressive cloud removal and shallow removal 
 ## Results on RICE dataset
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/cloud-results.jpg)
