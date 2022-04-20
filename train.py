@@ -56,12 +56,12 @@ if torch.cuda.device_count() > 1:
 
 new_lr = opt.OPTIM.LR_INITIAL
 
-optimizer = optim.Adam(model_restoration.parameters(), lr=new_lr, betas=(0.9, 0.999),eps=1e-8, weight_decay=1e-8)
+optimizer = optim.Adam(model_restoration.parameters(), lr=new_lr, betas=(0.9, 0.999),eps=1e-8)
 
 
 ######### Scheduler ###########
 warmup_epochs = 3
-scheduler_cosine = optim.lr_scheduler.CosineAnnealingLR(optimizer, opt.OPTIM.NUM_EPOCHS-warmup_epochs+40, eta_min=opt.OPTIM.LR_MIN)
+scheduler_cosine = optim.lr_scheduler.CosineAnnealingLR(optimizer, opt.OPTIM.NUM_EPOCHS-warmup_epochs, eta_min=opt.OPTIM.LR_MIN)
 scheduler = GradualWarmupScheduler(optimizer, multiplier=1, total_epoch=warmup_epochs, after_scheduler=scheduler_cosine)
 scheduler.step()
 
@@ -83,7 +83,8 @@ if len(device_ids)>1:
     model_restoration = nn.DataParallel(model_restoration, device_ids = device_ids)
 
 ######### Loss ###########
-criterion = losses.CharbonnierLoss()
+criterion_char = losses.CharbonnierLoss()
+criterion_edge = losses.EdgeLoss()
 
 ######### DataLoaders ###########
 train_dataset = get_training_data(train_dir, {'patch_size':opt.TRAINING.TRAIN_PS})
@@ -97,11 +98,6 @@ print('===> Loading datasets')
 
 best_psnr = 0
 best_epoch = 0
-best_iter = 0
-
-eval_now = len(train_loader)//3 - 1
-print(f"\nEval after every {eval_now} Iterations !!!\n")
-mixup = utils.MixUp_AUG()
 
 for epoch in range(start_epoch, opt.OPTIM.NUM_EPOCHS + 1):
     epoch_start_time = time.time()
@@ -118,57 +114,53 @@ for epoch in range(start_epoch, opt.OPTIM.NUM_EPOCHS + 1):
         target = data[0].cuda()
         input_ = data[1].cuda()
 
-        if epoch>5:
-            target, input_ = mixup.aug(target, input_)
-
         restored = model_restoration(input_)
-
+ 
         # Compute loss at each stage
-        loss = np.sum([criterion(torch.clamp(restored[j],0,1),target) for j in range(len(restored))])
-         
+        loss_char = np.sum([criterion_char(restored[j],target) for j in range(len(restored))])
+        loss_edge = np.sum([criterion_edge(restored[j],target) for j in range(len(restored))])
+        loss = (loss_char) + (0.05*loss_edge)
+        
         loss.backward()
         optimizer.step()
         epoch_loss +=loss.item()
 
-        #### Evaluation ####
-        if i%eval_now==0 and i>0 and (epoch in [1,25,45] or epoch>60):
-            model_restoration.eval()
-            psnr_val_rgb = []
-            for ii, data_val in enumerate((val_loader), 0):
-                target = data_val[0].cuda()
-                input_ = data_val[1].cuda()
+    #### Evaluation ####
+    if epoch%opt.TRAINING.VAL_AFTER_EVERY == 0:
+        model_restoration.eval()
+        psnr_val_rgb = []
+        for ii, data_val in enumerate((val_loader), 0):
+            target = data_val[0].cuda()
+            input_ = data_val[1].cuda()
 
-                with torch.no_grad():
-                    restored = model_restoration(input_)
-                restored = restored[0]
+            with torch.no_grad():
+                restored = model_restoration(input_)
+            restored = restored[0]
 
-                for res,tar in zip(restored,target):
-                    psnr_val_rgb.append(utils.torchPSNR(res, tar))
+            for res,tar in zip(restored,target):
+                psnr_val_rgb.append(utils.torchPSNR(res, tar))
 
-            psnr_val_rgb  = torch.stack(psnr_val_rgb).mean().item()
+        psnr_val_rgb  = torch.stack(psnr_val_rgb).mean().item()
 
-            if psnr_val_rgb > best_psnr:
-                best_psnr = psnr_val_rgb
-                best_epoch = epoch
-                best_iter = i
-                torch.save({'epoch': epoch, 
-                            'state_dict': model_restoration.state_dict(),
-                            'optimizer' : optimizer.state_dict()
-                            }, os.path.join(model_dir,"model_best.pth"))
-
-            print("[epoch %d it %d PSNR: %.4f --- best_epoch %d best_iter %d Best_PSNR %.4f]" % (epoch, i, psnr_val_rgb, best_epoch, best_iter, best_psnr))
-
+        if psnr_val_rgb > best_psnr:
+            best_psnr = psnr_val_rgb
+            best_epoch = epoch
             torch.save({'epoch': epoch, 
                         'state_dict': model_restoration.state_dict(),
                         'optimizer' : optimizer.state_dict()
-                        }, os.path.join(model_dir,f"model_epoch_{epoch}.pth")) 
+                        }, os.path.join(model_dir,"model_best.pth"))
 
-            model_restoration.train()
+        print("[epoch %d PSNR: %.4f --- best_epoch %d Best_PSNR %.4f]" % (epoch, psnr_val_rgb, best_epoch, best_psnr))
+
+        torch.save({'epoch': epoch, 
+                    'state_dict': model_restoration.state_dict(),
+                    'optimizer' : optimizer.state_dict()
+                    }, os.path.join(model_dir,f"model_epoch_{epoch}.pth")) 
 
     scheduler.step()
     
     print("------------------------------------------------------------------")
-    print("Epoch: {}\tTime: {:.4f}\tLoss: {:.4f}\tLearningRate {:.6f}".format(epoch, time.time()-epoch_start_time, epoch_loss, scheduler.get_lr()[0]))
+    print("Epoch: {}\tTime: {:.4f}\tLoss: {:.4f}\tLearningRate {:.8f}".format(epoch, time.time()-epoch_start_time, epoch_loss, scheduler.get_lr()[0]))
     print("------------------------------------------------------------------")
 
     torch.save({'epoch': epoch, 

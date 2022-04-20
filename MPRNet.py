@@ -236,7 +236,7 @@ class ORSNet(nn.Module):
 
 ##########################################################################
 class MPRNet(nn.Module):
-    def __init__(self, in_c=3, out_c=3, n_feat=80, scale_unetfeats=48, scale_orsnetfeats=32, num_cab=8, kernel_size=3, reduction=4, bias=False):
+    def __init__(self, in_c=3, out_c=3, n_feat=40, scale_unetfeats=20, scale_orsnetfeats=16, num_cab=8, kernel_size=3, reduction=4, bias=False):
         super(MPRNet, self).__init__()
 
         act=nn.PReLU()
