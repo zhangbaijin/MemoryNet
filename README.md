@@ -1,10 +1,11 @@
-
-# Results of Cloud removal on RICE dataset
+# Shadow removal and cloud removal using MPRNet
+shadow removal and cloud removal
+## Results of Cloud removal on RICE dataset
 
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/cloud-results.jpg)
 
-# Results of Cloud removal on RICE dataset
-![image]()
+## Results of Cloud removal on RICE dataset
+![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/shadow-results.jpg)
 
 #### Quick run 
 - Download SIDD Validation Data and Ground Truth from [here](https://www.eecs.yorku.ca/~kamel/sidd/benchmark.php) and place them in `./Datasets/SIDD/test/`
