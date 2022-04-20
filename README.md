@@ -23,10 +23,6 @@ python demo.py --task Task_Name --input_dir path_to_images --result_dir save_ima
 # Dataset 
 Download datasets RICE from [here](https://github.com/BUPTLdy/RICE_DATASET), and ISTD dataset from [here](https://github.com/nhchiu/Shadow-Removal-ISTD)
 
-
-#### To reproduce PSNR/SSIM scores of the paper, run
-```
-
 #### To reproduce PSNR/SSIM scores of the paper, run MATLAB script
 ```
 evaluate_SIDD.m
