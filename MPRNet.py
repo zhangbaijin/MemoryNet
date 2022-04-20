@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from pdb import set_trace as stx
-from memory_module import MemModule
+
 ##########################################################################
 def conv(in_channels, out_channels, kernel_size, bias=False, stride = 1):
     return nn.Conv2d(
@@ -79,7 +79,7 @@ class SAM(nn.Module):
 class Encoder(nn.Module):
     def __init__(self, n_feat, kernel_size, reduction, act, bias, scale_unetfeats, csff):
         super(Encoder, self).__init__()
-        
+
         self.encoder_level1 = [CAB(n_feat,                     kernel_size, reduction, bias=bias, act=act) for _ in range(2)]
         self.encoder_level2 = [CAB(n_feat+scale_unetfeats,     kernel_size, reduction, bias=bias, act=act) for _ in range(2)]
         self.encoder_level3 = [CAB(n_feat+(scale_unetfeats*2), kernel_size, reduction, bias=bias, act=act) for _ in range(2)]
@@ -90,8 +90,7 @@ class Encoder(nn.Module):
 
         self.down12  = DownSample(n_feat, scale_unetfeats)
         self.down23  = DownSample(n_feat+scale_unetfeats, scale_unetfeats)
-        
-    
+
         # Cross Stage Feature Fusion (CSFF)
         if csff:
             self.csff_enc1 = nn.Conv2d(n_feat,                     n_feat,                     kernel_size=1, bias=bias)
@@ -116,8 +115,6 @@ class Encoder(nn.Module):
         x = self.down23(enc2)
 
         enc3 = self.encoder_level3(x)
-        enc3= self.mem_rep(enc3)
-       
         if (encoder_outs is not None) and (decoder_outs is not None):
             enc3 = enc3 + self.csff_enc3(encoder_outs[2]) + self.csff_dec3(decoder_outs[2])
         
@@ -239,7 +236,7 @@ class ORSNet(nn.Module):
 
 ##########################################################################
 class MPRNet(nn.Module):
-    def __init__(self, in_c=3, out_c=3, n_feat=40, scale_unetfeats=20, scale_orsnetfeats=16, num_cab=8, kernel_size=3, reduction=4, bias=False):
+    def __init__(self, in_c=3, out_c=3, n_feat=80, scale_unetfeats=48, scale_orsnetfeats=32, num_cab=8, kernel_size=3, reduction=4, bias=False):
         super(MPRNet, self).__init__()
 
         act=nn.PReLU()
@@ -263,7 +260,6 @@ class MPRNet(nn.Module):
         self.concat23  = conv(n_feat*2, n_feat+scale_orsnetfeats, kernel_size, bias=bias)
         self.tail     = conv(n_feat+scale_orsnetfeats, out_c, kernel_size, bias=bias)
 
-        
     def forward(self, x3_img):
         # Original-resolution Image for Stage 3
         H = x3_img.size(2)
