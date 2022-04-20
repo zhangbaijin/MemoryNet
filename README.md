@@ -23,8 +23,6 @@ git clone https://github.com/nanjingxiaobawang/MPRNet-Cloud-removal
  
  
  Image shadow removal of SpAGAN on dataset ISTD is 
- 
- ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/2.png)
  ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/3.png)
  
  
