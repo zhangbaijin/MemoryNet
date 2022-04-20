@@ -4,7 +4,7 @@ shadow removal and cloud removal based on MPRNet
 
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/cloud-results.jpg)
 
-## Results of Cloud removal on RICE dataset
+## Results of Shadow removal on ISTD dataset
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/shadow-results.jpg)
 
 ## Quick Run
