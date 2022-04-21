@@ -25,7 +25,7 @@ Download datasets RICE from [here](https://github.com/BUPTLdy/RICE_DATASET), and
 
 #### To reproduce PSNR/SSIM scores of the paper, run MATLAB script
 ```
-evaluate_.m
+evaluate_PSNR_SSIM.m
 ```
 # ACKNOLAGEMENT
 The code is updated on https://github.com/swz30/MPRNet
