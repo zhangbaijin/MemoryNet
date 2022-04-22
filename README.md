@@ -1,5 +1,5 @@
 # Shadow removal and cloud removal using MPRNet
-shadow removal and cloud removal based on MPRNet
+shadow removal and cloud removal based on MPRNet， paper is coming soon
 ## Results of Cloud removal on RICE dataset
 
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/cloud-results.jpg)
