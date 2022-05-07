@@ -16,6 +16,7 @@ python demo.py --task Task_Name --input_dir path_to_images --result_dir save_ima
 
 ## Pretrained model
 
+
 1. Download the pretrained model [cloud-removal](https://drive.google.com/drive/folders/1hJQVQopWMD0WazeQzZC2eDbtirXkGILO?usp=sharing)
 
 2.Baidu Drive: 链接：https://pan.baidu.com/s/1nBNEsRLIFS2VVtHl8O14Rw 提取码：5mli
