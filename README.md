@@ -1,8 +1,5 @@
 # Shadow removal and cloud removal using Constractive learning
-shadow removal and cloud removal based on CLNet， paper is coming soon
-## Results of Cloud removal on RICE dataset
-
-![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/cloud-results.jpg)
+shadow removal and cloud removal based on Constractive learning and memory module， paper is coming soon
 
 ## Results of Shadow removal on ISTD dataset
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/shadow-results.jpg)
