@@ -1,5 +1,5 @@
-# Shadow removal and cloud removal using Constractive learning
-shadow removal and cloud removal based on Constractive learning and memory module， paper is coming soon
+# CB-MemoryNet:Contrastive balance learning memory net for image restoration
+CB-MemoryNet:Contrastive balance learning memory net for image restoration， paper is coming soon
 
 ## Results of Shadow removal on ISTD dataset
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/shadow-results.jpg)
