@@ -1,5 +1,5 @@
-# CB-MemoryNet:Contrastive balance learning memory net for image restoration
-CB-MemoryNet:Contrastive balance learning memory net for image restoration，image shadow removal, rain removal, debulrring.
+# MemoryNet:Memory augument is All You Need for imagerestoration
+Memory augument is All You Need for image restoration，image shadow removal, rain removal, debulrring.
 
 ## Results of Shadow removal on ISTD dataset
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/shadow-results.jpg)
