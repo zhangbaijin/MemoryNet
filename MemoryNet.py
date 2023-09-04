@@ -1,13 +1,14 @@
-"""
-## Multi-Stage Progressive Image Restoration
-## Syed Waqas Zamir, Aditya Arora, Salman Khan, Munawar Hayat, Fahad Shahbaz Khan, Ming-Hsuan Yang, and Ling Shao
-## https://arxiv.org/abs/2102.02808
-"""
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from pdb import set_trace as stx
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from pdb import set_trace as stx
+
+import memory
 
 ##########################################################################
 def conv(in_channels, out_channels, kernel_size, bias=False, stride = 1):
@@ -235,10 +236,11 @@ class ORSNet(nn.Module):
 
 
 ##########################################################################
-class MPRNet(nn.Module):
+class MemoryNet(nn.Module):
     def __init__(self, in_c=3, out_c=3, n_feat=40, scale_unetfeats=20, scale_orsnetfeats=16, num_cab=8, kernel_size=3, reduction=4, bias=False):
-        super(MPRNet, self).__init__()
-
+        super(MemoryNet, self).__init__()
+        #self.memory = memory.MemModule()
+        self.memory = memory.MemModule(ptt_num=2, num_cls=10, part_num=5, fea_dim=in_c)
         act=nn.PReLU()
         self.shallow_feat1 = nn.Sequential(conv(in_c, n_feat, kernel_size, bias=bias), CAB(n_feat,kernel_size, reduction, bias=bias, act=act))
         self.shallow_feat2 = nn.Sequential(conv(in_c, n_feat, kernel_size, bias=bias), CAB(n_feat,kernel_size, reduction, bias=bias, act=act))
@@ -261,22 +263,25 @@ class MPRNet(nn.Module):
         self.tail     = conv(n_feat+scale_orsnetfeats, out_c, kernel_size, bias=bias)
 
     def forward(self, x3_img):
+
         # Original-resolution Image for Stage 3
         H = x3_img.size(2)
         W = x3_img.size(3)
-
+    
         # Multi-Patch Hierarchy: Split Image into four non-overlapping patches
-
         # Two Patches for Stage 2
-        x2top_img  = x3_img[:,:,0:int(H/2),:]
-        x2bot_img  = x3_img[:,:,int(H/2):H,:]
+        x2top_img  = x2[:,:,0:int(H/2),:]
+        x2bot_img  = x2[:,:,int(H/2):H,:]
 
+        x3top_img  = x3[:,:,0:int(H/2),:]
+        x3bot_img  = x3[:,:,int(H/2):H,:]
+        
         # Four Patches for Stage 1
-        x1ltop_img = x2top_img[:,:,:,0:int(W/2)]
-        x1rtop_img = x2top_img[:,:,:,int(W/2):W]
-        x1lbot_img = x2bot_img[:,:,:,0:int(W/2)]
-        x1rbot_img = x2bot_img[:,:,:,int(W/2):W]
-
+        x1ltop_img = x3top_img[:,:,:,0:int(W/2)]
+        x1rtop_img = x3top_img[:,:,:,int(W/2):W]
+        x1lbot_img = x3bot_img[:,:,:,0:int(W/2)]
+        x1rbot_img = x3bot_img[:,:,:,int(W/2):W]
+        print(x1ltop_img.shape)
         ##-------------------------------------------
         ##-------------- Stage 1---------------------
         ##-------------------------------------------
@@ -328,14 +333,14 @@ class MPRNet(nn.Module):
         res2 = self.stage2_decoder(feat2)
 
         ## Apply SAM
-        x3_samfeats, stage2_img = self.sam23(res2[0], x3_img)
+        x3_samfeats, stage2_img = self.sam23(res2[0], x1)
 
 
         ##-------------------------------------------
         ##-------------- Stage 3---------------------
         ##-------------------------------------------
         ## Compute Shallow Features
-        x3     = self.shallow_feat3(x3_img)
+        x3     = self.shallow_feat3(x1)
 
         ## Concatenate SAM features of Stage 2 with shallow features of Stage 3
         x3_cat = self.concat23(torch.cat([x3, x3_samfeats], 1))
@@ -344,4 +349,14 @@ class MPRNet(nn.Module):
 
         stage3_img = self.tail(x3_cat)
 
-        return [stage3_img+x3_img, stage2_img, stage1_img]
+        return [stage3_img+x1, stage2_img, stage1_img]
+
+from torch.utils.tensorboard import SummaryWriter
+p = MemoryNet()
+image = torch.rand(1,3  ,512,512);
+writer = SummaryWriter()
+writer.add_graph(p, input_to_model=image, verbose=False)
+print(p)
+y = p(image)
+writer.flush()
+writer.close()
