@@ -264,10 +264,11 @@ class MemoryNet(nn.Module):
 
     def forward(self, x3_img):
 
-        # Original-resolution Image for Stage 3
         H = x3_img.size(2)
         W = x3_img.size(3)
-    
+        ##通过memory模块使得变为三个分支
+        x1,x2,x3 = self.memory(x3_img)
+        x3bot_img  = x3_img
         # Multi-Patch Hierarchy: Split Image into four non-overlapping patches
         # Two Patches for Stage 2
         x2top_img  = x2[:,:,0:int(H/2),:]
