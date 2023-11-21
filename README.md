@@ -3,6 +3,10 @@ Memory augument is All You Need for image restoration
 Memory是一个即插即用的记忆模块，随时提点！
 Paper link https://arxiv.org/abs/2309.01377
 
+
+## The structure of MemoryNet
+![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/structure.png)
+
 ## Results of Shadow removal on ISTD dataset
 ![image](https://github.com/zhangbaijin/MPRNet-Cloud-removal/blob/main/shadow-results.jpg)
 
