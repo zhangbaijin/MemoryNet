@@ -12,7 +12,7 @@ from glob import glob
 import cv2
 import argparse
 
-parser = argparse.ArgumentParser(description='Demo MPRNet')
+parser = argparse.ArgumentParser(description='Demo MemoryNet')
 parser.add_argument('--input_dir', default='./samples/input/', type=str, help='Input images')
 parser.add_argument('--result_dir', default='./samples/output/', type=str, help='Directory for results')
 parser.add_argument('--task', required=True, type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
@@ -49,8 +49,8 @@ if len(files) == 0:
     raise Exception(f"No files found at {inp_dir}")
 
 # Load corresponding model architecture and weights
-load_file = run_path(os.path.join(task, "MPRNet.py"))
-model = load_file['MPRNet']()
+load_file = run_path(os.path.join(task, "MemoryNet.py"))
+model = load_file['MemoryNet']()
 model.cuda()
 
 weights = os.path.join(task, "pretrained_models", "model_"+task.lower()+".pth")
