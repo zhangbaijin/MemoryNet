@@ -1,4 +1,4 @@
-# MemoryNet:Memory augument is All You Need for imagerestoration
+# MemoryNet:Memory augument is All You Need for image restoration
 Memory augument is All You Need for image restoration
 Memory是一个即插即用的记忆模块，随时提点！
 Paper link https://arxiv.org/abs/2309.01377
