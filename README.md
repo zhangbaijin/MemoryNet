@@ -1,5 +1,5 @@
 # MemoryNet:Memory augument is All You Need for image restoration
-Memory augument is All You Need for image restoration
+IEEE Transactions on Consumer Electronics 2025
 Memory是一个即插即用的记忆模块，随时提点！
 Paper link https://arxiv.org/abs/2309.01377
 
